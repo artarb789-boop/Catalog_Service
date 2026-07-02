@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: kazakov
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/category_V001_init_table.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: 2
+      author: kazakov
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/product_V001_init_table.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: 3
+      author: kazakov
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/stock_V001_init_table.sql
+            relativeToChangelogFile: false
+
+  - changeSet:
+      id: 4
+      author: kazakov
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/processed_event_V001_init_table.sql
+            relativeToChangelogFile: false

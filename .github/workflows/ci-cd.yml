@@ -1,0 +1,40 @@
+name: Java CI/CD with Gradle and Docker
+
+# Пайплайн запускается автоматически при пуше в ветку main
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Клонируем код репозитория на сервер GitHub
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Настраиваем Java-окружение (JDK 17)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Даем права на запуск Gradle Wrapper (чтобы сервер мог выполнить сборку)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Собираем проект через Gradle (компиляция, сборка jar и прогон тестов)
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      # 5. Инициализируем инструмент сборки Docker внутри GitHub
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 6. Тестовая сборка Docker-образа с использованием твоего Dockerfile.
+      # В качестве тега используется уникальный хэш коммита (github.sha)
+      - name: Build Docker Image
+        run: |
+          docker build -t catalog-service:${{ github.sha }} .
