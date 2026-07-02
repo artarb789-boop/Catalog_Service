@@ -67,6 +67,8 @@ services:
   catalog-service:
     image: ghcr.io/artarb789-boop/catalog_service:latest
     container_name: catalog-service
+    ports:
+      - "8081:8081"
     depends_on:
       auth-db:
         condition: service_healthy
