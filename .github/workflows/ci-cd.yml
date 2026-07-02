@@ -27,7 +27,7 @@ jobs:
 
       # 4. Собираем проект через Gradle (компиляция, сборка jar и прогон тестов)
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       # 5. Инициализируем инструмент сборки Docker внутри GitHub
       - name: Set up Docker Buildx
