@@ -64,21 +64,21 @@ services:
     networks:
       - kafka-network
 
-#  catalog-service:
-#    build: .
-#    container_name: catalog-service
-#    depends_on:
-#      auth-db:
-#        condition: service_healthy
-#      kafka:
-#        condition: service_started
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/${DB_NAME:-catalog_service_db}
-#      - SPRING_DATASOURCE_USERNAME=${DB_USER:-Artem}
-#      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-1234}
-#      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9094
-#    networks:
-#      kafka-network:
+  catalog-service:
+    image: ghcr.io/artarb789-boop/catalog_service:latest
+    container_name: catalog-service
+    depends_on:
+      auth-db:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://auth-db:5432/${DB_NAME:-catalog_service_db}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER:-Artem}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-1234}
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9094
+    networks:
+      kafka-network:
 
 
 networks:
