@@ -23,9 +23,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
 
                         // 2. Для любых других методов (POST, PUT, DELETE) требуем авторизацию
-                        .requestMatchers(HttpMethod.POST, "/api/v1/products/**").authenticated()
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/products/**").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/products/**").authenticated()
+                        .requestMatchers(HttpMethod.POST,"/api/v1/products", "/api/v1/products/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT,"/api/v1/products", "/api/v1/products/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE,"/api/v1/products", "/api/v1/products/**").authenticated()
 
                         .requestMatchers(HttpMethod.POST, "/api/v1/categories/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/v1/categories/**").authenticated()
