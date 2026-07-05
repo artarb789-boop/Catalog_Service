@@ -19,8 +19,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/api/v1/products/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/categories").permitAll()
 
                         // 2. Для любых других методов (POST, PUT, DELETE) требуем авторизацию
                         .requestMatchers(HttpMethod.POST,"/api/v1/products", "/api/v1/products/**").authenticated()
