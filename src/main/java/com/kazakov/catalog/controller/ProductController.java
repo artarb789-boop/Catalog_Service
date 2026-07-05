@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
@@ -23,7 +23,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ProductResponseDto create(@RequestBody @Valid ProductCreateDto dto) throws ExecutionException, InterruptedException {
         return productService.createProduct(dto);
     }
@@ -48,14 +48,14 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void deleteByUUID(@PathVariable UUID id) throws ExecutionException, InterruptedException {
         productService.deleteById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ProductResponseDto update(@PathVariable UUID id, @RequestBody @Valid ProductUpdateDto dto) throws ExecutionException, InterruptedException {
         return productService.updateProduct(id, dto);
     }
