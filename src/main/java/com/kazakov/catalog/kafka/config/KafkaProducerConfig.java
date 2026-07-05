@@ -41,7 +41,7 @@ public class KafkaProducerConfig {
     public NewTopic productTopic() {
         return TopicBuilder.name(productTopic)
                 .partitions(3)
-                .replicas(2)
+                .replicas(1)
                 .build();
     }
 
