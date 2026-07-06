@@ -79,8 +79,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=${DB_USER:-Artem}
       - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-1234}
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9094
+      - SPRING_PROFILES_ACTIVE=docker
     networks:
-      kafka-network:
+      - kafka-network
 
 
 networks:
